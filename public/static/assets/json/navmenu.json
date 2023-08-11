@@ -1,0 +1,21 @@
+[
+  {
+    "label": "首页",
+    "icon": "home",
+    "type": "subMenu",
+    "subMenuList": [
+      {
+        "label": "页面1",
+        "type": "menuItem",
+        "icon": "gis_monitoring.svg",
+        "location": "/page1"
+      },
+      {
+        "label": "页面2",
+        "type": "menuItem",
+        "icon": "gis_monitoring.svg",
+        "location": "/page2"
+      }
+    ]
+  }
+]

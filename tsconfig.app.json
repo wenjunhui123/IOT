@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "strict": true, // !important
+    "skipLibCheck": true,
+    "target": "ES6",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "moduleResolution": "Node",
+    "composite": true,
+    "module": "ESNext",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "lib": ["ES2021", "DOM"],
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "jsx": "preserve",
+    "noEmit": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@config": ["src/config/config.js"],
+      "@const": ["src/config/const.js"],
+      "@enums": ["src/config/enums.js"],
+      "@projects/*": ["src/projects/*"]
+    },
+    "types": ["element-plus/global"]
+  },
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["./src/**/*"],
+  "exclude": ["**/__tests__/**/*", "node_modules"],
+  "vueCompilerOptions": {
+    "target": 3.3
+  }
+}
