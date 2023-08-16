@@ -1,0 +1,173 @@
+/*布局类的通用样式*/
+.no-overflow {
+	overflow: hidden;
+}
+.relative {
+	position: relative;
+}
+.absolute {
+	position: absolute;
+}
+
+.border-box {
+	box-sizing: border-box;
+}
+
+.fullfilled {
+	width: 100%;
+	height: 100%;
+}
+
+.fullwidth {
+	width: 100%;
+}
+
+.fullheight {
+	height: 100%;
+}
+
+.inline {
+	display: inline;
+}
+.inline-block {
+	display: inline-block;
+}
+.not-in {
+	display: none;
+}
+
+textarea {
+	font-family: inherit;
+}
+
+/*清除浮动*/
+.clearfix {
+	zoom: 1;
+	&:after {
+		display: block;
+		visibility: hidden;
+		clear: both;
+		height: 0;
+		content: " ";
+	}
+}
+
+.text-left {
+	text-align: left;
+}
+.text-right {
+	text-align: right;
+}
+.text-center {
+	text-align: center;
+}
+
+.text-middle {
+	vertical-align: middle;
+}
+.text-top {
+	vertical-align: top;
+}
+.text-bottom {
+	vertical-align: bottom;
+}
+
+.text-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.nowrap {
+	white-space: nowrap;
+}
+.fr,
+.rfloat {
+	float: right;
+}
+.fl,
+.lfloat {
+	float: left;
+}
+.vertical-middle {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.horizontal-middle {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/*margin padding快捷写法*/
+/* margin */
+.no-margin,
+.margin0 {
+	margin: 0;
+}
+
+/* padding */
+.no-padding,
+.padding0 {
+	padding: 0 !important;
+}
+/* cascader隐藏第一层级复选框 */
+.cascader-disableFirstLevel
+  .el-cascader-panel
+  .el-cascader-menu:nth-child(1)
+  .el-checkbox {
+	display: none;
+}
+
+/* 文字过长隐藏以点点点显示 */
+.ellipse_text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+$maxMP: 35;
+@each $name, $prop, $direct in (m, margin), (mt, margin, top),
+  (mr, margin, right), (mb, margin, bottom), (ml, margin, left), (p, padding),
+  (pt, padding, top), (pr, padding, right), (pb, padding, bottom),
+  (pl, padding, left) {
+	$i: 0;
+	@while $i <= $maxMP {
+		$i: $i + 5;
+		.#{$name}#{$i} {
+			@if $direct != null {
+				#{$prop}-#{$direct}: #{$i}px !important;
+			} @else {
+				#{$prop}: #{$i}px !important;
+			}
+		}
+	}
+}
+
+$j: 15;
+@while $j <= 50 {
+	$j: $j + 5;
+	.lh#{$j} {
+		line-height: #{$j}px;
+	}
+}
+
+$k: 12;
+@while $k <= 40 {
+	$k: $k + 2;
+	.fs#{$k} {
+		font-size: #{$k}px !important;
+	}
+}
+
+$l: 20;
+@while $l <= 600 {
+	$l: $l + 20;
+	.w#{$l} {
+		width: #{$l}px !important;
+	}
+	.h#{$l} {
+		height: #{$l}px !important;
+	}
+}

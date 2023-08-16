@@ -1,0 +1,270 @@
+@use "sass:color";
+@use "sass:map";
+// 该文件已再 vue.config.js 全局性的引入，使用时无需额外引入
+@import "./_var.scss";
+@import "./_theme.scss";
+// element 主题相关的变量
+@import "./elementui-plus/theme/element-var.scss";
+
+$all-theme-vars: map.deep-merge($element-theme-var, $themes);
+
+$theme-map: null;
+//遍历主题map
+@mixin themeify {
+  @each $theme-name, $theme-map in $all-theme-vars {
+    //!global 把局部变量强升为全局变量
+    $theme-map: $theme-map !global;
+    //判断html的data-theme的属性值  #{}是sass的插值表达式
+    //& sass嵌套里的父容器标识   @content是混合器插槽，像vue的slot
+    [data-theme="#{$theme-name}"] & {
+      @content;
+    }
+  }
+}
+
+//声明一个根据Key获取颜色的function
+@function themed($key) {
+  @if type-of($key) != "number" {
+    $key: map-get($theme-map, $key);
+  }
+  @return $key;
+}
+
+//获取背景颜色
+@mixin background_color($color, $important: null) {
+  @include themeify {
+    background-color: themed($color) $important;
+  }
+}
+
+//获取背景由上到下的渐变色
+@mixin background_image_color($color, $important: null) {
+  @include themeify {
+    background-image: linear-gradient(to bottom, themed($color), #ffffff)
+      $important;
+  }
+}
+
+//获取背景由上到下的渐变色
+@mixin background_linear_color($color1, $color2, $important: null) {
+  @include themeify {
+    background-image: linear-gradient(
+        to bottom,
+        themed($color1),
+        themed($color2)
+      )
+      $important;
+  }
+}
+
+//获取背景颜色及设备背景透明度
+@mixin background_opcity_color($color, $opcity, $important: null) {
+  @include themeify {
+    background-color: rgba(themed($color), $opcity) $important;
+  }
+}
+
+//获取背景颜色
+@mixin background_image($color, $important: null) {
+  @include themeify {
+    background-image: themed($color) $important;
+  }
+}
+
+//获取背景
+@mixin background($background, $important: null) {
+  @include themeify {
+    background: themed($background) $important;
+  }
+}
+
+//获取字体颜色
+@mixin font_color($color, $important: null) {
+  @include themeify {
+    color: themed($color) $important;
+  }
+}
+
+//获取边框颜色
+@mixin border_color($color, $important: null) {
+  @include themeify {
+    border-color: themed($color) $important;
+  }
+}
+
+//获取某一个方向边框颜色
+@mixin border_direction_color($color, $direction, $important: null) {
+  @include themeify {
+    border-#{$direction}-color: themed($color) $important;
+  }
+}
+
+//获取svgicon的fill颜色
+@mixin fill_color($color, $important: null) {
+  @include themeify {
+    fill: themed($color) $important;
+  }
+}
+
+@mixin outline_color($color, $important: null) {
+  @include themeify {
+    outline-color: themed($color) $important;
+  }
+}
+
+//设置svg的stroke的颜色
+@mixin stroke_color($color, $important: null) {
+  @include themeify {
+    stroke: themed($color) $important;
+  }
+}
+
+@function mh-get($key) {
+  @if type-of($key) != "number" {
+    $key: map-get($mh-vars, $key);
+  }
+  @return $key;
+}
+
+@function mh-list($keys) {
+  $list: ();
+
+  @each $key in $keys {
+    $list: append($list, mh-get($key));
+  }
+  @return $list;
+}
+
+@mixin font_size($key, $important: null) {
+  font-size: mh-get($key) $important;
+}
+
+@mixin line_height($key, $important: null) {
+  line-height: mh-get($key) $important;
+}
+
+@mixin padding($keys, $important: null) {
+  padding: mh-list($keys) $important;
+}
+@mixin padding_left($key, $important: null) {
+  padding-left: mh-get($key) $important;
+}
+@mixin padding_top($key, $important: null) {
+  padding-top: mh-get($key) $important;
+}
+@mixin padding_right($key, $important: null) {
+  padding-right: mh-get($key) $important;
+}
+@mixin padding_bottom($key, $important: null) {
+  padding-bottom: mh-get($key) $important;
+}
+
+@mixin margin($keys, $important: null) {
+  margin: mh-list($keys) $important;
+}
+@mixin margin_left($key, $important: null) {
+  margin-left: mh-get($key) $important;
+}
+@mixin margin_top($key, $important: null) {
+  margin-top: mh-get($key) $important;
+}
+@mixin margin_right($key, $important: null) {
+  margin-right: mh-get($key) $important;
+}
+@mixin margin_bottom($key, $important: null) {
+  margin-bottom: mh-get($key) $important;
+}
+
+@mixin box_shadow($key, $important: null) {
+  box-shadow: mh-get($key) $important;
+}
+
+// 根据主题设置不同样式 e.g. 背景色 $theme 不传递的话，会生成 light, dark, blue 三套规则
+@mixin unify-theme-parent($theme: null) {
+  @if $theme {
+    [data-theme="#{$theme}"] & {
+      @content ($all-theme-vars, $theme);
+    }
+  } @else {
+    [data-theme="dark"] & {
+      @content ($all-theme-vars, 'dark');
+    }
+    [data-theme="light"] & {
+      @content ($all-theme-vars, 'light');
+    }
+    [data-theme="blue"] & {
+      @content ($all-theme-vars, 'blue');
+    }
+  }
+}
+
+@function change-color-alpha($color, $alpha) {
+  @return color.change($color, $alpha: $alpha);
+}
+
+%J1 {
+  & > *:not(:last-child) {
+    margin-right: mh-get(J1);
+  }
+}
+%J2 {
+  & > *:not(:last-child) {
+    margin-right: mh-get(J2);
+  }
+}
+%J3 {
+  & > *:not(:last-child) {
+    margin-right: mh-get(J3);
+  }
+}
+%J4 {
+  & > *:not(:last-child) {
+    margin-right: mh-get(J4);
+  }
+}
+
+%hover {
+  cursor: pointer;
+  &:hover {
+    @include background_color(BG2);
+  }
+  &:active {
+    @include background_color(BG3);
+  }
+}
+
+@mixin caption-title($fontSize: 14px) {
+  position: relative;
+  padding-left: 8px;
+  font-size: $fontSize;
+  &::before {
+    position: absolute;
+    @include background_color(ZS);
+    width: 2px;
+    height: 67%;
+    content: "";
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+// mock text danger button  的样式 i.e. table 里面的删除按钮
+@mixin text-error() {
+  &:deep() {
+    @include unify-theme-parent() using ($var, $theme) {
+      $--color-danger: map-deep-get($var, $theme, "--color-danger");
+      $--color-danger-disabled: mix(#fff, $--color-danger, 40%);
+      color: $--color-danger;
+      &.is-disabled {
+        color: $--color-danger-disabled;
+      }
+    }
+  }
+}
+
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

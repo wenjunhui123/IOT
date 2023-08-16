@@ -1,0 +1,92 @@
+@use "sass:map";
+// public/static/theme/elementui-(dark | light)/config.json 结合element-ui 使用时方便使用特定主题的
+$element-theme-var-basic: (
+  "light": (
+    "--color-primary": #29b061,
+    "--color-success": #29b061,
+    "--color-warning": #fcb92c,
+    "--color-danger": #f95e5a,
+    "--color-info": #989898,
+    "--color-text-primary": #333333,
+    "--color-text-regular": #666666,
+    "--color-text-secondary": #989898,
+    "--color-text-placeholder": #cccccc,
+    "--border-color-base": #d7d7d7,
+    "--border-color-light": #d7d7d7,
+    "--border-color-lighter": #f0f0f0,
+    "--border-color-extra-light": #f0f0f0,
+  ),
+  "dark": (
+    "--color-primary": #0d86ff,
+    "--color-success": #0dff86,
+    "--color-warning": #ff782b,
+    "--color-danger": #ff3f3f,
+    "--color-info": #ced2d6,
+    "--color-text-primary": #f0f1f2,
+    "--color-text-regular": #e6e8ea,
+    "--color-text-secondary": #ced2d6,
+    "--color-text-placeholder": #3a506b,
+    "--border-color-base": #3d4251,
+    "--border-color-light": #3a506b,
+    "--border-color-lighter": #3d4251,
+    "--border-color-extra-light": #2d3448,
+    "--color-white": #2b3244,
+    "--color-black": #16191a,
+    "--background-color-base": #363d50,
+    "--border-radius-small": 2px,
+    "--font-size-extra-large": 20px,
+    "--font-size-large": 18px,
+    "--font-size-small": 12px,
+    "--font-weight-primary": 500,
+    "--font-line-height-primary": 24px,
+    "--font-line-height-secondary": 16px,
+    "--font-size-medium": 16px,
+  ),
+  "blue": (
+    "--color-primary": #1087ff,
+    "--color-success": #00d68a,
+    "--color-warning": #ff932e,
+    "--color-danger": #ff4d4f,
+    "--color-info": #0be8eb,
+    "--color-text-primary": #fafafa,
+    "--color-text-regular": #e6e8ea,
+    "--color-text-secondary": #9abbe3,
+    "--color-text-placeholder": #9abbe3,
+    "--border-color-base": #294ac1,
+    "--border-color-light": #294ac1,
+    "--border-color-lighter": #294ac1,
+    "--border-color-extra-light": #294ac1,
+    "--color-white": #1f3087,
+    "--color-black": #0d1b64,
+    "--background-color-base": #3249bc,
+    "--border-radius-small": 2px,
+    "--font-size-extra-large": 20px,
+    "--font-size-large": 18px,
+    "--font-size-small": 12px,
+    "--font-weight-primary": 500,
+    "--font-line-height-primary": 24px,
+    "--font-line-height-secondary": 16px,
+    "--font-size-medium": 16px,
+  ),
+);
+
+$custom-theme-vars: (
+  "light": (
+    "--background-color-base": #f5f7fa,
+  ),
+  "dark": (
+    "--background-color-base": rgba(42, 63, 134, 0.5),
+  ),
+);
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+$element-theme-var: map.deep-merge(
+  $element-theme-var-basic,
+  $custom-theme-vars
+);

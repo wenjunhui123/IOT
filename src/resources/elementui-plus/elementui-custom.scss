@@ -1,0 +1,26 @@
+/*一些全局性的对elementui的css扩展*/
+@import "@/resources/_handle.scss";
+
+.el-table td,
+.el-table th {
+  padding: 0px;
+}
+.el-table .cell {
+  line-height: 30px;
+}
+.el-dialog__body {
+  line-height: normal;
+  padding: 20px;
+}
+
+// 兼容IE10和IE11下container布局，避免flex不兼容导致问题
+.el-container,
+.el-main {
+  -ms-flex: 1;
+}
+.el-header {
+  padding: 0 0 0 10px;
+}
+.el-main {
+  padding: 10px 0 10px 10px;
+}

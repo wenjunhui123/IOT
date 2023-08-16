@@ -1,0 +1,79 @@
+// 定制的 elment-ui 样式
+// @import "./elementui/elementui-custom.scss";
+
+// elemnt修复的样式
+@import "./elementui-plus/elementui-fix.scss";
+// 通用样式类
+@import "./common.scss";
+
+@import "./_handle.scss";
+// @import "./project.common.scss";
+
+// 针对水泵运行方案修改下拉样式
+// @import "./elementui-plus/pump-operation-scheme-elcascader/index.scss";
+// tailwind css 变量 utilities 等
+// @import "./tailwind.var.css";
+
+/* body布局, 字体颜色等样式*/
+body {
+	background-size: cover;
+
+	@include font_color(T1);
+	@include background(BG);
+	scroll-behavior: smooth;
+}
+
+// 滚动条样式
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+// 滚动槽
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+// 滚动条滑块
+::-webkit-scrollbar-thumb {
+	right: 4px;
+	border-radius: 6px;
+
+	@include themeify {
+		background: rgba(themed(T2), .3);
+		box-shadow: inset 0 0 2px rgba(themed(T2), .3);
+	}
+}
+
+@font-face {
+	src: url("./assets/fonts/digifacewide.ttf") format("truetype");
+	font-family: digiface-wide;
+}
+
+@font-face {
+	src: url("./assets/fonts/UnidreamLED.ttf") format("truetype");
+	font-family: led;
+}
+
+@font-face {
+	src: url("./assets/fonts/dinpro/DINPro-Regular.otf") format("opentype");
+	font-family: dinpro;
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face {
+	src: url("./assets/fonts/dinpro/DINPro-Bold.otf") format("opentype");
+	font-family: dinpro;
+	font-style: normal;
+	font-weight: bold;
+}
+@font-face {
+	src: url("./assets/fonts/dinpro/DINPro-Medium.otf") format("opentype");
+	font-family: dinpro;
+	font-style: normal;
+	font-weight: medium;
+}
+@font-face {
+	src: url("./assets/fonts/YouSheBiaoTiHei-2.ttf") format("truetype");
+	font-family: YouSheBiaoTiHei;
+	font-style: normal;
+	font-weight: bold;
+}

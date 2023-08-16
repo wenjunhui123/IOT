@@ -1,0 +1,428 @@
+@import "../_handle.scss";
+
+/*一些全局性的对elementui的css扩展*/
+
+// body .el-table th.gutter {
+//   display: table-cell !important;
+// }
+// body .el-table colgroup.gutter {
+//   display: table-cell !important;
+// }
+
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.el-range-input {
+  background: transparent;
+}
+
+.el-table td,
+.el-table th {
+  padding: 4px 0;
+}
+
+.el-table th > .cell {
+  font-size: 14px;
+}
+
+.el-table .cell {
+  line-height: 30px;
+}
+
+// .el-table__body tr.current-row > td {
+//   background-color: #627db5 !important;
+//   opacity: 0.55 !important;
+// }
+
+// .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+//   background-color: #627db5 !important;
+//   opacity: 0.75 !important;
+// }
+
+// .el-table--border .el-table__body tr.current-row > td {
+//   border-right: 1px solid #627db5 !important;
+// }
+
+// .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+//   // background-color: #bfdbf4 !important;
+// }
+
+// .el-table--border .el-table__body tr.current-row > td {
+//   // border-right: 1px solid #bfdbf4 !important;
+// }
+
+// .el-table {
+//   // color: black;
+// }
+
+.tree {
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.el-tree {
+  min-width: 100%;
+  display: inline-block !important;
+}
+
+.el-dialog__body {
+  line-height: normal;
+}
+
+.el-select {
+  display: block;
+}
+
+.el-date-editor--daterange.el-input,
+.el-date-editor--daterange.el-input__inner,
+.el-date-editor--timerange.el-input,
+.el-date-editor--timerange.el-input__inner {
+  width: 100%;
+}
+
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner {
+  // width: 100%;
+}
+
+// .el-tabs .el-tabs__content {
+//   height: calc(100% - 70px) !important;
+// }
+
+.el-tabs--border-card {
+  box-sizing: border-box;
+}
+
+.el-aside {
+  padding: 0 15px;
+  border-right: 1px solid #dcdfe6;
+}
+
+.el-dialog__body {
+  padding: 20px;
+}
+
+// .el-main {
+//   // height: 100%;
+// }
+
+// 兼容IE10和IE1下container布局，避免flex不兼容导致问题
+.el-container,
+.el-main {
+  -ms-flex: 1;
+}
+
+// .el-breadcrumb__inner {
+//   color: #fff !important;
+// }
+
+// i.el-select__caret.el-input__icon.el-icon-circle-close {
+//   color: red;
+// }
+
+// .el-table__body tr.current-row > td {
+//   background-color: #003399 !important;
+//   opacity: 0.35 !important;
+//   color: white;
+// }
+
+.w100 {
+  width: 100%;
+}
+.label-center {
+  display: flex;
+  align-items: center;
+}
+
+.btn-custom-cancel {
+  float: right;
+  margin-left: 10px;
+}
+
+@media print {
+  .noprint-area {
+    display: none;
+  }
+
+  .noprint-area * {
+    display: none;
+  }
+
+  .receipt {
+    margin-top: 5px !important;
+    border: 2px solid #666666;
+  }
+
+  .settlebill {
+    margin-top: 5px !important;
+    border: 1px solid #666666;
+  }
+
+  .monthlybill {
+    .el-table__body-wrapper {
+      height: 2000px !important;
+    }
+
+    .el-table--border {
+      border: 0px solid #666666 !important;
+    }
+
+    .el-table th.is-leaf,
+    .el-table td {
+      border: 2px solid #666666 !important;
+      padding: 4px;
+    }
+
+    .el-table--border th,
+    .el-table--border td {
+      border: 2px solid #666666 !important;
+      padding: 4px;
+    }
+  }
+
+  .balanceflow {
+    width: 1300px !important;
+    height: 1000px !important;
+
+    .el-table--border {
+      border: 2px solid #666666 !important;
+    }
+
+    .el-table th.is-leaf,
+    .el-table td {
+      border-bottom: 2px solid #666666 !important;
+      padding: 4px;
+    }
+
+    .el-table--border th,
+    .el-table--border td {
+      border-right: 2px solid #666666 !important;
+      padding: 4px;
+    }
+  }
+}
+
+.loading-class {
+  z-index: 10000 !important;
+}
+
+// tree 组件全局样式，处理节点名称超出设置宽度，方式是添加横向滚动条
+.Cet-Tree {
+  .el-tree > div:nth-child(1) {
+    // display: inline-block;
+    min-width: 100%;
+  }
+
+  .el-tree-node > .el-tree-node__children {
+    overflow: visible !important;
+  }
+
+  .el-tree--highlight-current {
+    min-width: 100%;
+    overflow: auto;
+  }
+}
+
+// 去掉Element滚动条组件的横滚动条
+.overflow-x-hidden .el-scrollbar__wrap {
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 项目公共重用样式 */
+// 通用公共样式
+.fl {
+  float: left !important;
+}
+.fr {
+  float: right !important;
+}
+.clearfix:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  zoom: 1;
+}
+// .mt-9 {
+//   margin-top: 9px;
+// }
+// .mt-10 {
+//   margin-top: 10px;
+// }
+// .mt-15 {
+//   margin-top: 15px;
+// }
+// .mt-20 {
+//   margin-top: 20px;
+// }
+// .pt-10 {
+//   padding-top: 10px;
+// }
+// .pt-15 {
+//   padding-top: 15px;
+// }
+// .pt-20 {
+//   padding-top: 20px;
+// }
+// .mb-10 {
+//   margin-bottom: 10px;
+// }
+// .mb-15 {
+//   margin-bottom: 15px;
+// }
+// .mb-20 {
+//   margin-bottom: 20px;
+// }
+// .pb-10 {
+//   padding-bottom: 10px;
+// }
+// .pb-15 {
+//   padding-bottom: 15px;
+// }
+// .pb-20 {
+//   padding-bottom: 20px;
+// }
+// .ml-8 {
+//   margin-left: 8px;
+// }
+// .ml-10 {
+//   margin-left: 10px;
+// }
+// .ml-15 {
+//   margin-left: 15px;
+// }
+// .ml-20 {
+//   margin-left: 20px;
+// }
+// .pl-10 {
+//   padding-left: 10px;
+// }
+// .pl-15 {
+//   padding-left: 15px;
+// }
+// .pl-20 {
+//   padding-left: 20px;
+// }
+// .mr-10 {
+//   margin-right: 10px;
+// }
+// .mr-15 {
+//   margin-right: 15px;
+// }
+// .mr-20 {
+//   margin-right: 20px;
+// }
+// .pr-10 {
+//   padding-right: 10px;
+// }
+// .pr-15 {
+//   padding-right: 15px;
+// }
+// .pr-20 {
+//   padding-right: 20px;
+// }
+.text-c {
+  text-align: center;
+}
+.text-r {
+  text-align: right;
+}
+.dis-inline-block {
+  display: inline-block;
+}
+.dis-block {
+  display: block;
+}
+.dis-none {
+  display: none;
+}
+.dis-flex {
+  display: flex;
+}
+// 输入框，下拉框，时间选择框前面label样式
+.basic-box {
+  display: flex;
+  // margin-top: 10px;
+  .basic-box-label {
+    display: block;
+    width: 86px;
+    text-align: center;
+    line-height: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    border: 1px solid #dcdfe6;
+    border-right: 0px;
+    // background-color: #f2f2f2;
+    // color: #000;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  .device-Input,
+  .device-Select,
+  .device-DatePicker {
+    flex: 1;
+    .el-input__inner {
+      border-top-left-radius: 0px !important;
+      border-bottom-left-radius: 0px !important;
+    }
+  }
+  .el-date-editor--time-select .el-input__inner {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+  }
+  .device-Button .el-button {
+    padding: 8px;
+    i {
+      margin-right: -5px;
+    }
+  }
+}
+.basic-box-over {
+  width: 100%;
+}
+
+// 各个页面名称
+.head-label {
+  line-height: 50px;
+  font-size: 20px;
+  // color: #0152d9;
+  float: left;
+  span {
+    display: block;
+    float: left;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    margin: 9px 15px;
+  }
+}
+// 块标题样式
+.block-title {
+  background-color: #cccccc;
+  text-align: center;
+  font-size: 14px;
+  color: #0066cc;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 28px;
+}
+.amap-logo {
+  display: none !important;
+}
+.amap-copyright {
+  opacity: 0;
+}
+.no-data {
+  text-align: center;
+  color: #989898;
+}
+
+// this will infect the text-buttons in table row
+// .el-button--small {
+//   padding-left: 16px !important;
+//   padding-right: 16px !important;
+// }

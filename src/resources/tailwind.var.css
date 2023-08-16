@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 主色 */
+    --ZS: #29b061;
+    /* 辅助色1 */
+    --F1: #1a7940;
+    /* 辅助色2 */
+    --F2: #d53b3b;
+    /* 成功 */
+    --Sta1: #29b061;
+    --Sta1_OPACITY: rgba(41, 176, 97, 0.1);
+    /* 警告 */
+    --Sta2: #fcb92c;
+    --Sta2_OPACITY: rgba(252, 185, 44, 0.1);
+    /* 危险 */
+    --Sta3: #f95e5a;
+    --Sta3_OPACITY: rgba(249, 94, 90, 0.1);
+    /* 一般 */
+    --Sta4: #00a2ff;
+    /* 次要 */
+    --Sta5: #7eb2ee;
+    --Sta5_OPACITY: rgba(126, 178, 238, 0.1);
+    /* 状态 */
+    --Sta6: #e0e4e8;
+    --Sta6_OPACITY: rgba(224, 228, 232, 0.1);
+    /* >>>> 文字色 */
+    /* 主要 */
+    --T1: #242424;
+    /* 常规 */
+    --T2: #333333;
+    /* 次要 */
+    --T3: #666666;
+    /* 占位 */
+    --T4: #989898;
+    /* 带背景的文字色 */
+    --T5: #ffffff;
+    /* >>>> 边框色 */
+    /* 主要 */
+    --B1: #cbcfd4;
+    /* 次要 */
+    --B2: #e0e4e8;
+    /* >>>> 背景色 */
+    --BG: #f3f5f7;
+    /* 主要 */
+    --BG1: #ffffff;
+    /* 滑入 */
+    --BG2: #f3f5f7;
+    /* 点击 */
+    --BG3: #e0e4e8;
+    /* 选中 */
+    --BG4: #eaf7ef;
+
+    /* 间距 */
+    --J1: 8px;
+    --J2: 16px;
+    --J3: 24px;
+    --J4: 32px;
+
+    /* 图标 */
+    --I1: 24px;
+    --I2: 32px;
+    --I3: 40px;
+    --I4: 64px;
+    --I5: 96px;
+
+    /* 字体 */
+    --H: 28px;
+    --H1: 22px;
+    --H2: 18px;
+    --H3: 16px;
+    --Aa: 14px;
+    --Ab: 12px;
+
+    /* 强投影 */
+    --S1: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+    /* 浅色投影 */
+    --S2: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  [data-theme="dark"] {
+    --ZS: #0d86ff;
+    --F1: #1375da;
+    --F2: #d53c40;
+    /* 成功 */
+    --Sta1: #0dff86;
+    --Sta1_OPACITY: rgba(13, 255, 134, 0.1);
+    /* 警告 */
+    --Sta2: #ff782b;
+    --Sta2_OPACITY: rgba(255, 120, 43, 0.1);
+    /* 危险 */
+    --Sta3: #ff3f3f;
+    --Sta3_OPACITY: rgba(255, 63, 63, 0.1);
+    /* 一般 */
+    --Sta4: #15e3e3;
+    /* 次要 */
+    --Sta5: #19c6c6;
+    --Sta5_OPACITY: rgba(25, 198, 198, 0.1);
+    /* 状态 */
+    --Sta6: #eef0f2;
+    --Sta6_OPACITY: #eef0f210;
+    /* >>>> 文字色 */
+    /* 主要 */
+    --T1: #f0f1f2;
+    /* 常规 */
+    --T2: #e6e8ea;
+    /* 次要 */
+    --T3: #ced2d6;
+    /* 占位 */
+    --T4: #b1b5b8;
+    /* 带背景的文字色 */
+    --T5: #ffffff;
+    /* >>>> 边框色 */
+    /* 主要 */
+    --B1: #3d4251;
+    /* 次要 */
+    --B2: #3a506b;
+    /* >>>> 背景色 */
+    --BG: #16191a;
+    /* 主要 */
+    --BG1: #2b3244;
+    /* 滑入 */
+    --BG2: #363d50;
+    /* 点击 */
+    --BG3: #586073;
+    /* 选中 */
+    --BG4: #283a57;
+  }
+
+  [data-theme="blue"] {
+    /* 主色 */
+    --ZS: #1087ff;
+    --ZS_LINEAR: rgba(16, 135, 255, 0.1);
+    /* 辅助色 */
+    --F1: #0a67d2;
+    /* 辅助色 */
+    --F2: #de2727;
+    /* 辅助色34 */
+    /* F3: #283a57, */
+    /* >>>> 状态色 */
+    /* 成功 */
+    --Sta1: #00d68a;
+    --Sta1_OPACITY: rgba(0, 214, 138, 0.1);
+    /* 警告 */
+    --Sta2: #ff932e;
+    --Sta2_OPACITY: rgba(255, 147, 46, 0.1);
+    /* 危险 */
+    --Sta3: #ff4d4f;
+    --Sta3_OPACITY: rgba(255, 77, 79, 0.1);
+    /* 一般 */
+    --Sta4: #0be8eb;
+    --Sta4_OPACITY: rgba(11, 232, 235, 0.1);
+    /* 次要 */
+    --Sta5: #5160ff;
+    --Sta5_OPACITY: rgba(81, 96, 255, 0.1);
+    /* 状态 */
+    --Sta6: #8e51da;
+    /* >>>> 文字色 */
+    /* 主要 */
+    --T1: #f0f1f2;
+    /* 常规 */
+    --T2: #e6e8ea;
+    /* 次要 */
+    --T3: #9abbe3;
+    /* 占位 */
+    --T4: #0be8eb;
+    /* 带背景的文字色 */
+    --T5: #ffffff;
+    /* >>>> 边框色 */
+    /* 主要 */
+    --B1: #294ac1;
+    /* 次要 */
+    --B2: #2f42ab;
+    /* >>>> 背景色 */
+    --BG: #0d1b64;
+    /* 主要 */
+    --BG1: #1f3087;
+    /* 滑入 */
+    --BG2: #2031a0;
+    /* 点击 */
+    --BG3: #3249bc;
+    /* 选中 */
+    --BG4: #142476;
+    /* 增加 */
+    --BG5: #283a57;
+  }
+
+  /* https://tailwindcss.com/docs/preflight#border-styles-are-reset-globally */
+  *,
+  ::before,
+  ::after {
+    border-width: 0;
+    border-style: solid;
+    border-color: theme("borderColor.DEFAULT", currentColor);
+  }
+}
+
+@layer utilities {
+  .abs-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .t-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,35 @@
+$themes_projects: (
+  light: (
+    // 登录
+    LOGIN_BG:
+      linear-gradient(
+        90deg,
+        rgba(231, 235, 246, 1) 0%,
+        rgba(231, 251, 242, 1) 100%
+      ),
+    LOGIN_CAROUSEL_IMG: url("@/projects/login/assets/login_side_light.png"),
+    LOGIN_LOGO_IMG: url("/static/assets/img/login_logo_light.png"),
+  ),
+  dark: (
+    // 登录
+    LOGIN_BG:
+      linear-gradient(
+        rgb(3, 152, 216) 0%,
+        rgb(99, 131, 255) 0%,
+        rgb(34, 46, 102) 100%
+      ),
+    LOGIN_CAROUSEL_IMG: url("@/projects/login/assets/login_side_light.png"),
+    LOGIN_LOGO_IMG: url("/static/assets/img/login_logo_dark.png"),
+  ),
+  "blue": (
+    // 登录
+    LOGIN_BG:
+      linear-gradient(
+        rgb(3, 152, 216) 0%,
+        rgb(99, 131, 255) 0%,
+        rgb(34, 46, 102) 100%
+      ),
+    LOGIN_CAROUSEL_IMG: url("@/projects/login/assets/login_side_light.png"),
+    LOGIN_LOGO_IMG: url("/static/assets/img/login_logo_dark.png"),
+  ),
+);
