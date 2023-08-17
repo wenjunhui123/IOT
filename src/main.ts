@@ -2,7 +2,8 @@ import './assets/main.css'
 // 加载全局性的样式文件
 import "./resources/index.scss";
 import "./resources/tailwind.var.css";
-
+// global css
+import './styles/index.scss'
 import { createApp } from 'vue'
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'

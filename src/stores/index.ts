@@ -1,9 +1,11 @@
-import { useAppStore } from "./modules/app";
+import type { App } from "vue";
+import { createPinia } from "pinia";
 
+const store = createPinia();
 
-// 统一导出useStore方法
-export function useStore() {
-  return {
-    app: useAppStore(),
-  };
+// 全局注册 store
+export function setupStore(app: App<Element>) {
+  app.use(store);
 }
+
+export { store };

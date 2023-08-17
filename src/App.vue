@@ -9,8 +9,8 @@ const appStore = useAppStore(pinia);
 </script>
 
 <template>
-    <div id="appContent">
-        <!-- <el-button type="success"><i-ep-SuccessFilled />Success</el-button>
+    <!-- <div id="appContent"> -->
+    <!-- <el-button type="success"><i-ep-SuccessFilled />Success</el-button>
         <el-button type="info"><svg-icon icon-class="layout_user" />SVG 本地图标</el-button>
         <el-icon color="#409EFC" class="no-inherit">
             <Share />
@@ -21,10 +21,10 @@ const appStore = useAppStore(pinia);
             <RouterLink to="/">Home</RouterLink> |
             <RouterLink to="/about">About</RouterLink>
         </nav> -->
-        <el-config-provider :locale="appStore.locale">
-            <router-view />
-        </el-config-provider>
-    </div>
+    <el-config-provider :locale="appStore.locale">
+        <router-view />
+    </el-config-provider>
+    <!-- </div> -->
 </template>
 
 <style scoped></style>

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { type RouteLocationNormalized } from "vue-router";
+import { ref } from "vue";
 
 export interface TagView extends Partial<RouteLocationNormalized> {
   title?: string;
