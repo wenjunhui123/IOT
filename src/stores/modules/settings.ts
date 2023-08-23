@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import defaultSettings from "@/settings";
 import { useStorage } from "@vueuse/core";
+import { ref } from "vue";
 
 export const useSettingsStore = defineStore("setting", () => {
   // state
