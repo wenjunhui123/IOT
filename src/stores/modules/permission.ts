@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 import { constantRoutes } from "@/router";
 import { store } from "@/stores";
 // import { listRoutes } from "@/api/menu";
-import {getJsonFile } from "@/api/tools/utils"
+import { getJsonFile } from "@/api/tools/utils";
 
 const modules = import.meta.glob("../../views/**/**.vue");
 const Layout = () => import("@/layout/index.vue");
@@ -46,6 +46,7 @@ const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
 
     // 判断用户(角色)是否有该路由的访问权限
     if (hasPermission(roles, tmpRoute)) {
+      console.log(tmpRoute.component?.toString());
       if (tmpRoute.component?.toString() == "Layout") {
         tmpRoute.component = Layout;
         console.log();
@@ -85,19 +86,23 @@ export const usePermissionStore = defineStore("permission", () => {
    * @returns
    */
   function generateRoutes(roles: string[]) {
-    return new Promise<RouteRecordRaw[]>((resolve, reject) => {
+    return new Promise<RouteRecordRaw[]>(async (resolve, reject) => {
       // 接口获取所有路由
-        // listRoutes()
-        getJsonFile("static/assets/json/navmenu.json")
-        .then(({ data: asyncRoutes }) => {
-          // 根据角色获取有访问权限的路由
-          const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
-          setRoutes(accessedRoutes);
-          resolve(accessedRoutes);
-        })
-        .catch((error: any) => {
-          reject(error);
-        });
+      // listRoutes()
+      //   .then(({ data: asyncRoutes }) => {
+      //     // 根据角色获取有访问权限的路由
+      //     const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
+      //     setRoutes(accessedRoutes);
+      //     resolve(accessedRoutes);
+      //   })
+      //   .catch((error: any) => {
+      //     reject(error);
+      //   });
+      const asyncRoutes = await getJsonFile("static/assets/json/navmenu.json");
+      const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
+
+      setRoutes(accessedRoutes);
+      resolve(accessedRoutes);
     });
   }
   return { routes, setRoutes, generateRoutes };

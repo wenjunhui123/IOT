@@ -2,15 +2,16 @@
   "compilerOptions": {
     "strict": true, // !important
     "skipLibCheck": true,
-    "target": "ES6",
+    "target": "esnext",
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
     "baseUrl": ".",
     "moduleResolution": "Node",
     "composite": true,
     "module": "esnext",
     "allowJs": true,
     "esModuleInterop": true,
-    "lib": ["ES2021", "DOM"],
+    "lib": ["esnext", "DOM"],
     "resolveJsonModule": true,
     "outDir": "./dist",
     "jsx": "preserve",
@@ -22,11 +23,17 @@
       "@enums": ["src/config/enums.js"],
       "@projects/*": ["src/projects/*"]
     },
-    "types": ["element-plus/global"]
+    "types": ["vite/client", "unplugin-icons/types/vue","element-plus/global" ]
   },
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["./src/**/*"],
-  "exclude": ["**/__tests__/**/*", "node_modules"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "src/types/**/*.d.ts",
+    "mock/**/*.ts",
+    "vite.config.ts"
+  ],
+  "exclude": ["**/__tests__/**/*", "node_modules", "dist", "**/*.js"],
   "vueCompilerOptions": {
     "target": 3.3
   }
