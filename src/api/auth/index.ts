@@ -15,7 +15,7 @@ export function loginApi(data: LoginData): AxiosPromise<LoginResult> {
   formData.append("verifyCodeKey", data.verifyCodeKey || "");
   formData.append("verifyCode", data.verifyCode || "");
   return request({
-    url: "/api/v1/auth/login",
+    url: "/api-mock/v1/auth/login",
     method: "post",
     data: formData,
     headers: {
@@ -29,7 +29,7 @@ export function loginApi(data: LoginData): AxiosPromise<LoginResult> {
  */
 export function logoutApi() {
   return request({
-    url: "/api/v1/auth/logout",
+    url: "/api-mock/v1/auth/logout",
     method: "delete",
   });
 }
@@ -39,7 +39,7 @@ export function logoutApi() {
  */
 export function getCaptchaApi(): AxiosPromise<CaptchaResult> {
   return request({
-    url: "/api/v1/auth/captcha",
+    url: "/api-mock/v1/auth/captcha",
     method: "get",
   });
 }

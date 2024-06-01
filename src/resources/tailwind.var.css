@@ -53,6 +53,9 @@
     --BG3: #e0e4e8;
     /* 选中 */
     --BG4: #eaf7ef;
+    
+     /* element-plus  */
+   --botton-hover-color:#54c081;
 
     /* 间距 */
     --J1: 8px;
@@ -128,6 +131,9 @@
     --BG3: #586073;
     /* 选中 */
     --BG4: #283a57;
+
+     /* element-plus  */
+   --botton-hover-color:#1375da;
   }
 
   [data-theme="blue"] {
@@ -186,6 +192,9 @@
     --BG4: #142476;
     /* 增加 */
     --BG5: #283a57;
+
+     /* element-plus  */
+   --botton-hover-color:#1375da;
   }
 
   /* https://tailwindcss.com/docs/preflight#border-styles-are-reset-globally */

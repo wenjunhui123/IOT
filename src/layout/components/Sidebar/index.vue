@@ -3,7 +3,7 @@
 import { useRoute } from "vue-router";
 import SidebarItem from "./SidebarItem.vue";
 import Logo from "./Logo.vue";
-import { ref, computed, nextTick, watch } from 'vue'
+import { ref, computed, nextTick, watch } from "vue";
 import { useSettingsStore } from "@/stores/modules/settings";
 import { usePermissionStore } from "@/stores/modules/permission";
 import { useAppStore } from "@/stores/modules/app";
@@ -32,12 +32,23 @@ watch(
   <div :class="{ 'has-logo': sidebarLogo }" class="menu-wrap">
     <logo v-if="sidebarLogo" :collapse="!appStore.sidebar.opened" />
     <el-scrollbar v-if="showContent">
-      <el-menu :default-active="layout === 'top' ? '-' : currRoute.path" :collapse="!appStore.sidebar.opened"
-        :background-color="variables.menuBg" :text-color="variables.menuText"
-        :active-text-color="variables.menuActiveText" :unique-opened="false" :collapse-transition="false"
-        :mode="layout === 'top' ? 'horizontal' : 'vertical'">
-        <sidebar-item v-for="route in permissionStore.routes" :key="route.path" :item="route" :base-path="route.path"
-          :is-collapse="!appStore.sidebar.opened" />
+      <el-menu
+        :default-active="layout === 'top' ? currRoute.path : currRoute.path"
+        :collapse="!appStore.sidebar.opened"
+        :background-color="variables.menuBg"
+        :text-color="variables.menuText"
+        :active-text-color="variables.menuActiveText"
+        :unique-opened="false"
+        :collapse-transition="false"
+        :mode="layout === 'top' ? 'horizontal' : 'vertical'"
+      >
+        <sidebar-item
+          v-for="route in permissionStore.routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+          :is-collapse="!appStore.sidebar.opened"
+        />
       </el-menu>
     </el-scrollbar>
     <NavRight v-if="layout === 'top'" />

@@ -5,6 +5,7 @@
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+    "suppressImplicitAnyIndexErrors":true,
     "baseUrl": ".",
     "moduleResolution": "Node",
     "composite": true,
@@ -28,11 +29,13 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
     "src/**/*.ts",
+    "src/**/*.tsx",
     "src/**/*.vue",
     "src/types/**/*.d.ts",
     "mock/**/*.ts",
-    "vite.config.ts"
-  ],
+    "vite.config.ts",
+    "uno.config.js"
+, "src/views/deviceManagement/channelManagement/components/rules.tsx", "src/views/deviceManagement/channelManagement/components/rules.jsx", "src/views/productManagement/components/rules.tsx", "src/views/productManagement/components/measurePoints/rules.tsx", "src/views/productManagement/components/remoteControl/rules.tsx", "src/views/productManagement/components/alarmTemplate/rules.tsx"  ],
   "exclude": ["**/__tests__/**/*", "node_modules", "dist", "**/*.js"],
   "vueCompilerOptions": {
     "target": 3.3

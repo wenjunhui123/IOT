@@ -1,0 +1,24 @@
+{
+  "global": {
+    "$--color-primary": "#29B061",
+    "$--color-success": "#29B061",
+    "$--color-warning": "#FCB92C",
+    "$--color-danger": "#F95E5A",
+    "$--color-info": "#00A2FF",
+    "$--color-text-primary": "#242424",
+    "$--color-text-regular": "#333333",
+    "$--color-text-secondary": "#666666",
+    "$--color-text-placeholder": "#989898",
+    "$--border-color-base": "#CBCFD4",
+    "$--border-color-light": "#E0E4E8",
+    "$--border-color-lighter": "#E0E4E8",
+    "$--border-color-extra-light": "#E0E4E8"
+  },
+  "local": {
+    "$--button-padding-vertical": "8px",
+    "$--avatar-background-color": "#E0E4E8",
+    "$--calendar-selected-background-color": "#E0E4E8",
+    "$--transfer-panel-header-background-color": "#F3F5F7",
+    "$--tree-node-hover-background-color": "#F3F5F7"
+  }
+}

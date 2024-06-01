@@ -1,17 +1,41 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+import * as echarts from "echarts";
 import { useSettingsStore } from "@/stores/modules/settings";
 import { ref, onMounted } from "vue";
 import { useDark } from "@vueuse/core";
 import IconEpSunny from "~icons/ep/sunny";
 import IconEpMoon from "~icons/ep/moon";
+import { getJsonFile } from "@/api/tools/utils";
 
 /**
  * 暗黑模式
  */
 const settingsStore = useSettingsStore();
 const isDark = useDark();
-const toggleDark = () => useToggle(isDark);
+const linkDOM = document.querySelector("#theme-color-id");
+const toggleDark = async () => {
+  useToggle(isDark);
+  const theme = isDark.value ? "dark" : "light";
+  const eleThemeUrl = `/static/theme/elementui-${theme}/theme/index.css`;
+  const echartsThemeUrl = `/static/theme/echarts-${theme}/index.json`;
+  const echartsConfig = await getJsonFile(echartsThemeUrl);
+  echarts.registerTheme(theme, echartsConfig);
+  const htmlDom: HTMLHtmlElement | null = document.querySelector("html");
+  if (htmlDom) {
+    htmlDom.className = theme;
+  }
+  linkDOM.type = "text/css";
+  linkDOM.rel = "stylesheet";
+  document.head.insertBefore(linkDOM, document.head.firstChild || null);
+  const link = new Promise(function (resolve, reject) {
+    linkDOM.href = eleThemeUrl;
+    linkDOM.onload = resolve;
+    linkDOM.onerror = reject;
+  });
+  window.document.documentElement.setAttribute("data-theme", theme);
+  settingsStore.changeSetting({ key: "theme", value: theme });
+};
 
 /**
  * 切换布局
@@ -21,22 +45,11 @@ function changeLayout(layout: string) {
   window.document.body.setAttribute("layout", settingsStore.layout);
 }
 
-// 主题颜色
-const themeColors = ref<string[]>([
-  "#409EFF",
-  "#304156",
-  "#11a983",
-  "#13c2c2",
-  "#6959CD",
-  "#f5222d",
-]);
-
 /**
  * 切换主题颜色
  */
 function changeThemeColor(color: string) {
   document.documentElement.style.setProperty("--el-color-primary", color);
-  // settingsStore.changeSetting({ key: "layout", value: color });
 }
 
 onMounted(() => {
@@ -50,8 +63,15 @@ onMounted(() => {
     <el-divider>主题</el-divider>
 
     <div class="flex justify-center" @click.stop>
-      <el-switch v-model="isDark" inline-prompt :active-icon="IconEpMoon" :inactive-icon="IconEpSunny"
-        active-color="var(--el-fill-color-dark)" inactive-color="var(--el-color-primary)" @change="toggleDark" />
+      <el-switch
+        v-model="isDark"
+        inline-prompt
+        :active-icon="IconEpMoon"
+        :inactive-icon="IconEpSunny"
+        active-color="var(--el-fill-color-dark)"
+        inactive-color="var(--el-color-primary)"
+        @change="toggleDark"
+      />
     </div>
 
     <el-divider>界面设置</el-divider>
@@ -61,45 +81,33 @@ onMounted(() => {
     </div>
 
     <div class="py-[8px] flex justify-between">
-      <span class="text-xs">固定 Header</span>
-      <el-switch v-model="settingsStore.fixedHeader" />
-    </div>
-
-    <div class="py-[8px] flex justify-between">
       <span class="text-xs">侧边栏 Logo</span>
       <el-switch v-model="settingsStore.sidebarLogo" />
     </div>
-
-    <el-divider>主题颜色</el-divider>
-
-    <ul class="w-full space-x-2 flex justify-center py-2">
-      <li v-for="(color, index) in themeColors" :key="index" class="inline-block w-[30px] h-[30px] cursor-pointer"
-        :style="{ background: color }" @click="changeThemeColor(color)"></li>
-    </ul>
 
     <el-divider>导航设置</el-divider>
 
     <ul class="layout">
       <el-tooltip content="左侧模式" placement="bottom">
-        <li :class="'layout-item layout-left ' +
-          (settingsStore.layout === 'left' ? 'is-active' : '')
-          " @click="changeLayout('left')">
+        <li
+          :class="
+            'layout-item layout-left ' +
+            (settingsStore.layout === 'left' ? 'is-active' : '')
+          "
+          @click="changeLayout('left')"
+        >
           <div></div>
           <div></div>
         </li>
       </el-tooltip>
       <el-tooltip content="顶部模式" placement="bottom">
-        <li :class="'layout-item layout-top ' +
-          (settingsStore.layout === 'top' ? 'is-active' : '')
-          " @click="changeLayout('top')">
-          <div></div>
-          <div></div>
-        </li>
-      </el-tooltip>
-      <el-tooltip content="混合模式" placement="bottom">
-        <li :class="'layout-item layout-mix ' +
-          (settingsStore.layout === 'mix' ? 'is-active' : '')
-          " @click="changeLayout('mix')">
+        <li
+          :class="
+            'layout-item layout-top ' +
+            (settingsStore.layout === 'top' ? 'is-active' : '')
+          "
+          @click="changeLayout('top')"
+        >
           <div></div>
           <div></div>
         </li>

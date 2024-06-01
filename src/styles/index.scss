@@ -1,7 +1,7 @@
 @import "./sidebar";
 @import "./reset";
 @import "./dark";
-
+@import "./customize-element.scss";
 .app-container {
   padding: 10px;
 }
@@ -23,4 +23,8 @@
   &:hover {
     color: rgb(32 160 255);
   }
+}
+
+.el-select-dropdown{
+    position: unset !important;
 }

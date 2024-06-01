@@ -3,6 +3,7 @@ import defaultSettings from "@/settings";
 import { useStorage } from "@vueuse/core";
 import { ref } from "vue";
 
+
 export const useSettingsStore = defineStore("setting", () => {
   // state
   const tagsView = useStorage<boolean>("tagsView", defaultSettings.tagsView);
@@ -12,6 +13,8 @@ export const useSettingsStore = defineStore("setting", () => {
   const sidebarLogo = ref<boolean>(defaultSettings.sidebarLogo);
 
   const layout = useStorage<string>("layout", defaultSettings.layout);
+
+  const theme =useStorage<string>("theme", defaultSettings.theme);
 
   // actions
   function changeSetting(param: { key: string; value: any }) {
@@ -32,12 +35,16 @@ export const useSettingsStore = defineStore("setting", () => {
       case "layout":
         layout.value = value;
         break;
+      case "theme":
+        theme.value = value;
+        break;
       default:
         break;
     }
   }
 
-  return {
+    return {
+    theme,
     showSettings,
     tagsView,
     fixedHeader,
@@ -45,4 +52,6 @@ export const useSettingsStore = defineStore("setting", () => {
     layout,
     changeSetting,
   };
-});
+}, {
+    persist: true,
+  });

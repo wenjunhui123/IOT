@@ -1,7 +1,7 @@
 // import './assets/main.css'
 // 加载全局性的样式文件
-// import "./resources/index.scss";
-// import "./resources/tailwind.var.css";
+import "./resources/index.scss";
+import "./resources/tailwind.var.css";
 // global css
 
 import { createApp } from "vue";
@@ -24,6 +24,9 @@ import "@/styles/index.scss";
 import "uno.css";
 const app = createApp(App);
 
+import init from "./init"
+
+
 const navmenu = await getJsonFile("static/assets/json/navmenu.json");
 app.config.globalProperties.$navmenu = navmenu;
 
@@ -34,3 +37,4 @@ app.use(router);
 setupStore(app);
 
 app.mount("#app");
+init()

@@ -133,6 +133,7 @@
 
   .el-menu--collapse .el-menu .el-sub-menu {
     min-width: $sideBarWidth !important;
+    background-color: $subMenuBg !important;
   }
 
   // mobile responsive
@@ -164,7 +165,8 @@
 }
 
 // when menu collapsed
-.el-menu--vertical {
+.el-menu--vertical,.el-menu--horizontal {
+    background-color: $menuBg !important;
   & > .el-menu {
     .svg-icon {
       margin-right: 16px;
@@ -175,7 +177,9 @@
       margin-left: -2px;
     }
   }
-
+  .el-menu-item:not(.is-disabled):focus{
+    background-color: $menuHover !important;
+  }
   .nest-menu .el-sub-menu > .el-sub-menu__title,
   .el-menu-item {
     &:hover {

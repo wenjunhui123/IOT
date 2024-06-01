@@ -1,16 +1,18 @@
 html.dark {
-  --menuBg: var(--el-bg-color-overlay);
-  --menuText: #fff;
-  --menuActiveText: var(--el-menu-active-color);
-  --menuHover: rgb(0 0 0 / 20%);
-  --subMenuBg: var(--el-menu-bg-color);
-  --subMenuActiveText: var(--el-menu-active-color);
-  --subMenuHover: rgb(0 0 0 / 20%);
+    --menuBg: var(--BG1);
+    --menuText: var(--T2);
+    --menuActiveText: var(--ZS);
+    --menuHover: var(--B2);
+    --subMenuBg: var(--BG1);
+    --subMenuActiveText: var(--T2);
+    --subMenuHover: var(--B2);
+    --el-color-primary:var(--ZS);
+    --el-color-primary-light-3: var(--ZS);
 
   // wang-editor toolbar
   --w-e-toolbar-bg-color: var(--el-bg-color-overlay);
   --w-e-toolbar-color: var(--el-text-color-regulary);
-  --w-e-toolbar-active-bg-color: var(--el-bg-color-page);
+  --w-e-toolbar-active-bg-color: var(--BG1-page);
   --w-e-toolbar-active-color: var(--el-color-info-dark-2);
   --w-e-toolbar-disabled-color: var(--el-disabled-text-color);
   --w-e-toolbar-border-color: var(--el-color-info-light-8);
@@ -28,7 +30,7 @@ html.dark {
   --w-e-modal-button-border-color: var(--el-color-info-light-3);
 
   .navbar {
-    background-color: var(--el-bg-color);
+    background-color: var(--BG1);
 
     .setting-container .setting-item:hover {
       background: var(--el-fill-color-light);

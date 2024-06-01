@@ -1,0 +1,10 @@
+{
+  "msgtype": "markdown",
+  "markdown": {
+    "title": "web 前端 {{nextTag}} 版本发布",
+    "text": "# web 前端 {{nextTag}} 版本发布 \n - 版本号：{{nextTag}} \n - [docker镜像仓库：]({{repoImageUrl}}) \n - 构建任务名称：{{jobName}} \n - [构建日志]({{logUrl}}) \n -[代码质量报告]({{sonarCodeReoportUrl}})"
+  },
+  "at": {
+    "isAtAll": true
+  }
+}

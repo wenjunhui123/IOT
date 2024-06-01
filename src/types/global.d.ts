@@ -51,5 +51,19 @@ declare global {
      */
     children?: OptionType[];
   }
+
+  // 处理  类型“AxiosResponse<any, any>”上不存在属性“errorinfo”。ts(2339) 脑壳疼！关键一步。
+
+  interface UniversalReponse<T> {
+    code: number;
+    data: T;
+    msg: string;
+    success?: boolean;
+    total?: number;
+  }
+  interface Window {
+    HTTP_LOADDING_COUNT: number;
+  }
 }
+
 export {};

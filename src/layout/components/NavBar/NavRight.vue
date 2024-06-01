@@ -1,35 +1,31 @@
 <template>
-  <!-- 导航栏设置(窄屏隐藏)-->
-  <div v-if="device !== 'mobile'" class="setting-container">
-    <!--全屏 -->
-    <div class="setting-item" @click="toggle">
-      <svg-icon :icon-class="isFullscreen ? 'exit-fullscreen' : 'fullscreen'" />
+    <!-- 导航栏设置(窄屏隐藏)-->
+    <div v-if="device !== 'mobile'" class="setting-container">
+        <!--全屏 -->
+        <div class="setting-item" @click="toggle">
+            <svg-icon :icon-class="isFullscreen ? 'exit-fullscreen' : 'fullscreen'" />
+        </div>
+        <!--语言选择-->
+        <lang-select class="setting-item" />
     </div>
-    <!-- 布局大小 -->
-    <el-tooltip content="布局大小" effect="dark" placement="bottom">
-      <size-select class="setting-item" />
-    </el-tooltip>
-    <!--语言选择-->
-    <lang-select class="setting-item" />
-  </div>
 
-  <!-- 用户头像 -->
-  <el-dropdown trigger="click">
-    <div class="avatar-container">
-      <img :src="userStore.avatar + '?imageView2/1/w/80/h/80'" />
-      <i-ep-caret-bottom class="w-3 h-3" />
-    </div>
-    <template #dropdown>
-      <el-dropdown-menu>
-        <router-link to="/">
-          <el-dropdown-item>{{ $t("navbar.dashboard") }}</el-dropdown-item>
-        </router-link>
-        <el-dropdown-item divided @click="logout">
-          {{ $t("navbar.logout") }}
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </template>
-  </el-dropdown>
+    <!-- 用户头像 -->
+    <el-dropdown trigger="click">
+        <div class="avatar-container">
+            <img :src="layout_user" alt="用户头像" />
+            <i-ep-caret-bottom class="w-3 h-3" />
+        </div>
+        <template #dropdown>
+            <el-dropdown-menu>
+                <router-link to="/">
+                    <el-dropdown-item>{{ $t("navbar.dashboard") }}</el-dropdown-item>
+                </router-link>
+                <el-dropdown-item divided @click="logout">
+                    {{ $t("navbar.logout") }}
+                </el-dropdown-item>
+            </el-dropdown-menu>
+        </template>
+    </el-dropdown>
 </template>
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
@@ -37,6 +33,8 @@ import { useRoute, useRouter } from "vue-router";
 import { useAppStore } from "@/stores/modules/app";
 import { useTagsViewStore } from "@/stores/modules/tagsView";
 import { useUserStore } from "@/stores/modules/user";
+
+const layout_user: string = new URL(`@/assets/icons/layout_user.svg`, import.meta.url).href;
 
 const appStore = useAppStore();
 const tagsViewStore = useTagsViewStore();
@@ -56,53 +54,54 @@ const { isFullscreen, toggle } = useFullscreen();
  * 注销
  */
 function logout() {
-  ElMessageBox.confirm("确定注销并退出系统吗？", "提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "warning",
-  }).then(() => {
-    userStore
-      .logout()
-      .then(() => {
-        tagsViewStore.delAllViews();
-      })
-      .then(() => {
-        router.push(`/login?redirect=${route.fullPath}`);
-      });
-  });
+    ElMessageBox.confirm("确定注销并退出系统吗？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+    }).then(() => {
+        // userStore
+        //     .logout()
+        //     .then(() => {
+        //         tagsViewStore.delAllViews();
+        //     })
+        //     .then(() => {
+        //         router.push(`/login?redirect=${route.fullPath}`);
+        //     });
+            router.push(`/login?redirect=${route.fullPath}`);
+    });
 }
 </script>
 <style lang="scss" scoped>
 .setting-container {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 
-  .setting-item {
-    display: inline-block;
-    width: 30px;
-    height: 50px;
-    line-height: 50px;
-    color: var(--el-text-color-regular);
-    text-align: center;
-    cursor: pointer;
+    .setting-item {
+        display: inline-block;
+        width: 30px;
+        height: 50px;
+        line-height: 50px;
+        color: var(--el-text-color-regular);
+        text-align: center;
+        cursor: pointer;
 
-    &:hover {
-      background: var(--el-color-info-light-3);
+        &:hover {
+            background: var(--el-color-info-light-3);
+        }
     }
-  }
 }
 
 .avatar-container {
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  margin: 0 5px;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin: 0 5px;
+    cursor: pointer;
 
-  img {
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-  }
+    img {
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+    }
 }
 </style>

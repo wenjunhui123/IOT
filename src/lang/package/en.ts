@@ -1,12 +1,12 @@
 export default {
   // 路由国际化
   route: {
-    dashboard: "Dashboard",
+    dashboard: "SystemNetworkNodeManagement",
     document: "Document",
   },
   // 登录页面国际化
   login: {
-    title: "vue3-element-admin",
+    title: "IOT物联网平台",
     username: "Username",
     password: "Password",
     login: "Login",

@@ -15,7 +15,7 @@ import { viteMockServe } from "vite-plugin-mock";
 import visualizer from "rollup-plugin-visualizer";
 
 import UnoCSS from "unocss/vite";
-import presetUno from '@unocss/preset-uno'
+import presetUno from "@unocss/preset-uno";
 
 import viteCompression from "vite-plugin-compression";
 
@@ -24,7 +24,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   return {
     plugins: [
       vue(),
-      UnoCSS({presets: [presetUno()]}),
+      UnoCSS({ presets: [presetUno()] }),
       vueJsx(),
       AutoImport({
         // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
@@ -59,6 +59,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         // 配置文件位置(false:关闭自动生成)
         dts: false,
         // dts: "src/types/components.d.ts",
+        directoryAsNamespace: true, //  <------ 这里
       }),
       Icons({
         // 自动安装图标库
@@ -82,7 +83,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       viteMockServe({
         ignore: /^\_/,
         mockPath: "mock",
-        enable: mode === "development",
+        // enable: mode === "development",
         // https://github.com/anncwb/vite-plugin-mock/issues/9
       }),
       visualizer({
@@ -92,7 +93,11 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         brotliSize: true,
       }),
     ],
-    resolve: { 
+    build: {
+        target: ["edge90", "chrome90", "firefox90", "safari15"],
+        outDir: process.env.BUILD_OUTPUT_DIR || "dist",
+    },
+    resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
@@ -103,10 +108,11 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         //define global scss variable
         scss: {
           javascriptEnabled: true,
-              additionalData: `@use "@/styles/variables.scss" as *;`,
-          
+          additionalData: `@use "@/styles/variables.scss" as *;@import "@/resources/_handle.scss";`,
         },
       },
+      // 可以查看 CSS 的源码
+      devSourcemap: true,
     },
     // 预加载项目必需的组件
     optimizeDeps: {
@@ -185,7 +191,42 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
               env.VITE_APP_TARGET_BASE_API
             ), // 替换 /dev-api 为 target 接口地址
         },
+        "^/lyd-api/": {
+          target: "http://172.17.6.205:4120",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/lyd-api/, "/api"),
+        },
+        "^/hcc-api-device/": {
+          target: "http://172.17.6.201:9995",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/hcc-api-device/, "/api"),
+        },
+        "^/wjh-api-device/": {
+          target: "http://127.0.0.1:9995",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/wjh-api-device/, "/api"),
+        },
+        "^/hcc-api/": {
+          target: "http://172.17.6.201:4120",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/hcc-api/, "/api"),
+        },
+        "^/shh-api/": {
+          target: "http://10.12.135.92:9995",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/shh-api/, "/api"),
+          },
+          "^/wxx-api/": {
+            target: "http://172.17.6.221:4119",
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/wxx-api/, "/api"),
+          },
+        "^/api/": {
+          target: "http://172.17.6.148:4120",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, "/api"),
+        },
       },
-    },
+      }
   };
 });

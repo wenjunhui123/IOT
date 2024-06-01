@@ -42,7 +42,7 @@ interface DefaultSettings {
 }
 
 const defaultSettings: DefaultSettings = {
-  title: "vue3-element-admin",
+  title: "IOT物联网平台",
   showSettings: true,
   tagsView: true,
   fixedHeader: false,
@@ -54,7 +54,7 @@ const defaultSettings: DefaultSettings = {
    * dark:暗黑模式
    * light: 明亮模式
    */
-  theme: "dark",
+  theme: "light",
   size: "default", // default |large |small
   language: "zh-cn", // zh-cn| en
 };

@@ -36,7 +36,7 @@ module.exports = {
     "property-no-unknown": [
       true,
       {
-        ignoreProperties: ["menuBg", "menuText", "menuActiveText"],
+        ignoreProperties: ["menuBg", "menuText", "menuActiveText", "menuHover"],
       },
     ],
   },

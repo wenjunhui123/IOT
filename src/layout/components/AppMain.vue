@@ -5,41 +5,49 @@ const tagsViewStore = useTagsViewStore();
 </script>
 
 <template>
-    <section class="app-main">
-        <router-view v-slot="{ Component, route }">
-            <transition name="router-fade" mode="out-in">
-                <keep-alive :include="tagsViewStore.cachedViews">
-                    <component :is="Component" :key="route.fullPath" />
-                </keep-alive>
-            </transition>
-        </router-view>
-    </section>
+  <section class="app-main">
+    <router-view v-slot="{ Component, route }">
+      <transition name="router-fade" mode="out-in">
+        <keep-alive :include="tagsViewStore.cachedViews">
+          <component :is="Component" :key="route.fullPath" />
+        </keep-alive>
+      </transition>
+    </router-view>
+  </section>
 </template>
 
 <style lang="scss" scoped>
 .app-main {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 
-    /* 50= navbar  50  */
-    min-height: calc(100vh - 50px);
-    overflow: hidden;
-    background-color: var(--el-bg-color-page);
+  /* 50= navbar  50  */
+  min-height: calc(100vh - 84px);
+  overflow: hidden;
+  background-color: var(--BG1-page);
 }
 
-.fixed-header+.app-main {
-    padding-top: 50px;
+.fixed-header + .app-main {
+  padding-top: 50px;
 }
 
 .hasTagsView {
-    .app-main {
-        /* 84 = navbar + tags-view = 50 + 34 */
-        min-height: calc(100vh - 84px);
-    }
+  .app-main {
+    /* 84 = navbar + tags-view = 50 + 34 */
+    box-sizing: border-box;
+    height: calc(100vh - 84px);
+    padding: 20px;
 
-    .fixed-header+.app-main {
-        min-height: 100vh;
-        padding-top: 84px;
+    :deep(> div) {
+      width: 100%;
+      height: 100%;
+      @include background_color(BG1);
     }
+  }
+
+  .fixed-header + .app-main {
+    min-height: 100vh;
+    padding-top: 84px;
+  }
 }
 </style>

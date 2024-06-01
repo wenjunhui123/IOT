@@ -46,10 +46,8 @@ const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
 
     // 判断用户(角色)是否有该路由的访问权限
     if (hasPermission(roles, tmpRoute)) {
-      console.log(tmpRoute.component?.toString());
       if (tmpRoute.component?.toString() == "Layout") {
         tmpRoute.component = Layout;
-        console.log();
       } else {
         const component = modules[`../../views/${tmpRoute.component}.vue`];
         if (component) {

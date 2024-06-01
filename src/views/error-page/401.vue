@@ -40,7 +40,7 @@ function back() {
                 <ul class="list-unstyled">
                     <li>或者你可以去:</li>
                     <li class="link-type">
-                        <router-link to="/dashboard"> 回首页 </router-link>
+                        <router-link to="/systemNetworkNodeManagement"> 回首页 </router-link>
                     </li>
                     <li class="link-type">
                         <a href="https://www.taobao.com/">随便看看</a>
@@ -51,11 +51,11 @@ function back() {
                 </ul>
             </el-col>
             <el-col :span="12">
-                <img :src="errGif" width="313" height="428" alt="Girl has dropped her ice cream." />
+                <img :src="errGif" width="313" height="428" alt="err" />
             </el-col>
         </el-row>
         <el-dialog v-model="dialogVisible" title="随便看">
-            <img :src="ewizardClap" class="pan-img" />
+            <img :src="ewizardClap" class="pan-img" alt="err" />
         </el-dialog>
     </div>
 </template>
